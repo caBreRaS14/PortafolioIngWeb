@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+{% block head_extra %}{% endblock %}
+  <meta charset="utf-8">
+  <title>{% block title %}Mi Portafolio{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+
+
+  <header class="site-header">
+    <div class="header-inner">
+      <nav class="navbar">
+        <a href="{% url 'home' %}">Inicio</a>
+        <a href="{% url 'contactame' %}">Contáctame</a>
+        <a href="{% url 'fyq' %}">FAQ</a>
+        <a href="{% url 'open' %}">Series</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+
+  {# Block para scripts específicos de cada plantilla #}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contáctame - Mi Portafolio{% endblock %}
+
+{% block content %}
+  <h1>Contáctame</h1>
+
+  {% if error %}
+    <div class="form-error">{{ error }}</div>
+  {% endif %}
+
+  <form id="contactForm" method="post" action="" onsubmit="validateAndSubmit(event);">
+    {% csrf_token %}
+    <label>Nombre*<br><input type="text" name="nombre" id="nombre" required></label><br>
+    <label>Correo*<br><input type="email" name="correo" id="correo" required></label><br>
+    <label>Teléfono<br><input type="text" name="telefono" id="telefono"></label><br>
+    <label>Mensaje*<br><textarea name="mensaje" id="mensaje" rows="5" required></textarea></label><br>
+    <button type="submit" id="sendBtn">Enviar</button>
+  </form>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'core/js/script.js' %}"></script>
+{% endblock %}

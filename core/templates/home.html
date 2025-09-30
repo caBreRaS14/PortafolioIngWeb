@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - Hoja de vida{% endblock %}
+
+{% block head_extra %}
+  {# Aquí puedes poner metatags u hojas extra si quieres #}
+{% endblock %}
+
+{% block content %}
+  <header class="hero">
+    <div class="hero-inner">
+      <img class="hero-avatar" src="{% static 'core/img/mi-foto.png' %}" alt="Sebastian cabrera">
+      <div class="hero-text">
+        <h1 class="hero-name">Sebastian cabrera</h1>
+        <p class="hero-role">Desarrollador Web • Django • Frontend</p>
+        <p class="hero-about">Soy desarrollador web enfocado en construir aplicaciones escalables con Django y experiencias frontend y backend limpias.</p>
+
+        <div class="hero-cta">
+          <a class="btn" href="{% url 'contactame' %}">Contáctame</a>
+          <a class="btn outline" href="{% url 'open' %}">Ver series / trabajos</a>
+        </div>
+
+        <ul class="socials">
+          <li><a href="#" title="GitHub" rel="noopener">GitHub</a></li>
+          <li><a href="#" title="LinkedIn" rel="noopener">LinkedIn</a></li>
+          <li><a href="#" title="Email" rel="noopener">Email</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section id="portfolio" class="section">
+    <div class="section-header">
+      <h2>Portafolio</h2>
+      <p class="muted">Algunos proyectos destacados</p>
+    </div>
+
+    <div class="projects-grid">
+      {% if projects %}
+        {% for p in projects %}
+          <article class="project-card">
+            {% if p.image %}
+              <div class="project-thumb" style="background-image:url('{{ p.image.url }}')"></div>
+            {% else %}
+              <div class="project-thumb placeholder"></div>
+            {% endif %}
+            <div class="project-body">
+              <h3>{{ p.title }}</h3>
+              <p class="muted">{{ p.summary|truncatechars:120 }}</p>
+              <div class="project-meta">
+                <span class="chip">{{ p.tech|default:'Django' }}</span>
+                <a class="btn small" href="{% url 'project_detail' p.pk %}">Ver</a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% else %}
+        <article class="project-card">
+          <div class="project-thumb placeholder"></div>
+          <div class="project-body">
+            <h3>tractogenesis </h3>
+            <p class="muted">Es una empresa con más de 25 años de experiencia en el mercado Colombiano dedicada a la importación, exportación y distribución de repuestos para ejes, direcciones y trasmisiones para maquinaria agrícola, industrial, construcción, minera y mucho más. Somos distribuidores autorizados Dana Spicer, Corteco  y GTP</p>
+            <div class="project-meta">
+              <span class="chip">next.js</span>
+              <a class="btn small" href="https://tractogenesis.com/">Ver</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-thumb placeholder"></div>
+          <div class="project-body">
+            <h3>Tu Seguro Medico</h3>
+            <p class="muted">TuSeguroMedico.com es tu agencia lider en seguros médicos en español. Te ofrecemos las mejores opciones en planes de Obamacare, planes de salud económicos, planes de salud privados, seguros dentales y trámites de inmigración en Florida, Texas y más estados. Recibe asesoría gratuita y atención personalizada para encontrar la cobertura médica apropiada para ti y tu familia. Trabajamos con compañias aseguradoras como Ambetter Sunshine, Florida Blue, United Healthcare, Oscar Health, Molina Healthcare y Cigna.</p>
+            <div class="project-meta">
+              <span class="chip">WP</span>
+              <a class="btn small" href="https://tuseguromedico.com/">Ver</a>
+            </div>
+          </div>
+        </article>
+      {% endif %}
+    </div>
+  </section>
+
+  <section id="skills" class="section">
+    <div class="section-header">
+      <h2>Skills</h2>
+      <p class="muted">Tecnologías y herramientas que uso con frecuencia.</p>
+    </div>
+    <ul class="skills-list">
+      <li>Python / Django</li>
+      <li>HTML5 & CSS3 (Flexbox / Grid)</li>
+      <li>JavaScript (Vanilla)</li>
+      <li>Git & GitHub</li>
+      <li>SEO & Performance</li>
+    </ul>
+  </section>
+
+  <section id="banners" class="section">
+    <div class="section-header">
+      <h2>Compañeros</h2>
+      
+    </div>
+
+  </section>
+{% endblock %}

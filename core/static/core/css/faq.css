@@ -1,0 +1,36 @@
+/* core/static/core/css/faq.css */
+.faq-item {
+  max-width: 900px;
+  margin: 12px auto;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+  overflow: hidden;
+  border-left: 4px solid rgba(52,152,219,0.12);
+}
+.faq-question {
+  padding: 16px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.faq-question::after { content: "+"; color: #3498db; font-weight: 800; }
+.faq-question[aria-expanded="true"]::after { content: "−"; }
+/* animación y padding cuando está abierta */
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 260ms ease, padding 200ms ease;
+  color: #555;
+}
+
+.faq-answer.open {
+  padding: 16px 20px 20px;
+  /* max-height la controla el JS dinámicamente (scrollHeight),
+     esta línea es un fallback si JS no corre */
+  max-height: 400px;
+}

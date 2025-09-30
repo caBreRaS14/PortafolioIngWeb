@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Series - Mi Portafolio{% endblock %}
+
+{% block head_extra %}
+  <link rel="stylesheet" href="{% static 'core/css/open.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1>Series</h1>
+  <div class="grid">
+    {% for item in items %}
+      <article class="card">
+        {% if item.image %}
+          <div class="card-thumb">
+            <img src="{{ item.image.url }}" alt="{{ item.title }}">
+          </div>
+        {% endif %}
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.summary }}</p>
+        <p><strong>Keywords:</strong> {{ item.keywords }}</p>
+        <a class="btn" href="{% url 'open_detail' item.pk %}">Ver detalle</a>
+      </article>
+    {% empty %}
+      <p>No hay series registradas aún.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

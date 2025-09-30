@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Preguntas Frecuentes - Mi Portafolio{% endblock %}
+
+{% block head_extra %}
+  <link rel="stylesheet" href="{% static 'core/css/faq.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1>Preguntas Frecuentes</h1>
+
+  {% for faq in faqs %}
+    <div class="faq-item">
+      <div
+        class="faq-question"
+        role="button"
+        tabindex="0"
+        aria-expanded="false"
+        aria-controls="faq-answer-{{ forloop.counter }}">
+        {{ faq.pregunta }}
+      </div>
+
+      <div id="faq-answer-{{ forloop.counter }}" class="faq-answer" aria-hidden="true">
+        {{ faq.respuesta|linebreaks }}
+      </div>
+    </div>
+  {% empty %}
+    <p>No hay preguntas frecuentes todavía.</p>
+  {% endfor %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'core/js/faq.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ item.title }} — Detalle{% endblock %}
+
+{% block content %}
+  <div class="container-detail">
+    <a class="back" href="{% url 'open' %}">← Volver a la lista</a>
+
+    <h1>{{ item.title }}</h1>
+
+    <div class="detail-hero">
+      {% if item.image %}
+        <img class="hero-img" src="{{ item.image.url }}" alt="{{ item.title }}">
+      {% endif %}
+
+      <div class="detail-content">
+        {% if item.summary %}
+          <p class="meta">{{ item.summary }}</p>
+        {% endif %}
+
+        <div class="content">
+          {{ item.description|linebreaks }}
+        </div>
+
+        {% if item.keywords %}
+          <p class="keywords"><strong>Palabras clave:</strong> {{ item.keywords }}</p>
+        {% endif %}
+
+        <p class="actions">
+          <a id="contactFromDetail" class="btn" href="{% url 'contactame' %}?utm_source=open_detail&utm_medium=site&utm_campaign=contact">Contactar</a>
+          <a class="btn" href="{% url 'home' %}">Inicio</a>
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'core/js/open_detail.js' %}"></script>
+{% endblock %}
